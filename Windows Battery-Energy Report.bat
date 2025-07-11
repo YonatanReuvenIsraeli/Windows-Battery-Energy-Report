@@ -2,7 +2,7 @@
 title Windows Battery/Energy Report
 setlocal
 echo Program Name: Windows Battery/Energy Report
-echo Version: 2.1.14
+echo Version: 2.1.15
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -37,7 +37,7 @@ goto "Start"
 :"DurationBattery"
 echo.
 set Duration=
-set /p Duration="Enter the amount of day(s) you want to analyze the battery for. (1-14) "
+set /p Duration="Enter the amount of previous day(s) you want to analyze the battery for. (1-14) "
 if /i "%Duration%"=="" set Duration=7
 if /i "%Duration%"=="1" goto "SureDurationBattery"
 if /i "%Duration%"=="2" goto "SureDurationBattery"
@@ -59,7 +59,7 @@ goto "DurationBattery"
 :"SureDurationBattery"
 echo.
 set SureDuration=
-set /p SureDuration="Are you sure you want to analyze the battery for %Duration% day(s)? (Yes/No) "
+set /p SureDuration="Are you sure you want to analyze the battery for the previous %Duration% day(s)? (Yes/No) "
 if /i "%SureDuration%"=="Yes" goto "BatteryReportSet"
 if /i "%SureDuration%"=="No" goto "DurationBattery"
 echo Invalid syntax!
@@ -85,7 +85,7 @@ goto "Close"
 :"BatteryReportExist"
 set BatteryReport=True
 echo.
-echo Please temporarily rename to something else or temporarily move to another location "battery-report.html" in order for this batch file to proceed. "battery-report.html" is not a system file. "battery-report.html" is located in the folder you ran this batch file from. Press any key to continue when "battery-report.html" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
+echo Please temporarily rename to something else or temporarily move to another location "battery-report.html" in order for this batch file to proceed. "battery-report.html" is not a system file. "battery-report.html" is located in the folder "%cd%". Press any key to continue when "battery-report.html" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
 pause > nul 2>&1
 goto "BatteryReport"
 
@@ -143,7 +143,7 @@ goto "Close"
 :"EnergyReportExist"
 set EnergyReport=True
 echo.
-echo Please temporarily rename to something else or temporarily move to another location "energy-report.html" in order for this batch file to proceed. "energy-report.html" is not a system file. "energy-report.html" is located in the folder you ran this batch file from. Press any key to continue when "energy-report.html" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
+echo Please temporarily rename to something else or temporarily move to another location "energy-report.html" in order for this batch file to proceed. "energy-report.html" is not a system file. "energy-report.html" is located in the folder "%cd%". Press any key to continue when "energy-report.html" is renamed to something else or moved to another location. This batch file will let you know when you can rename it back to its original name or move it back to its original location.
 pause > nul 2>&1
 goto "EnergyReport"
 
