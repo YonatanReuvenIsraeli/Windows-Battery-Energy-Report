@@ -2,7 +2,7 @@
 title Windows Battery/Energy Report
 setlocal
 echo Program Name: Windows Battery/Energy Report
-echo Version: 2.1.15
+echo Version: 2.1.16
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -101,7 +101,7 @@ goto "Done"
 
 :"BatteryReportDone"
 echo.
-echo You can now rename or move back the file back to "battery-report.html" Press any key to close this batch file.
+echo You can now rename or move the file back to "battery-report.html" Press any key to close this batch file.
 pause > nul 2>&1
 goto "Done"
 
@@ -159,7 +159,7 @@ goto "Done"
 
 :"EnergyReportDone"
 echo.
-echo You can now rename or move back the file back to "energy-report.html" Press any key to close this batch file.
+echo You can now rename or move the file back to "energy-report.html" Press any key to close this batch file.
 pause > nul 2>&1
 goto "Done"
 
