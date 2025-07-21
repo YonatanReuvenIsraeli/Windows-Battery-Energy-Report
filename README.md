@@ -1,4 +1,4 @@
-# Windows Battery/Energy Report v2.1.17
+# Windows Battery/Energy Report v2.2.0
 Get a Windows battery/energy report.
 
 ## Notes:
