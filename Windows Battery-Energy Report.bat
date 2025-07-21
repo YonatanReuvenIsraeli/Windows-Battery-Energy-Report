@@ -2,7 +2,7 @@
 title Windows Battery/Energy Report
 setlocal
 echo Program Name: Windows Battery/Energy Report
-echo Version: 2.1.17
+echo Version: 2.2.0
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -17,7 +17,7 @@ goto "Start"
 echo.
 echo Please run this batch file as an administrator. Press any key to close this batch file.
 pause > nul 2>&1
-goto "Close"
+goto "Done"
 
 :"InWindowsPreinstallationEnvironmentWindowsRecoveryEnvironment"
 echo.
@@ -80,7 +80,7 @@ pause > nul 2>&1
 del "battery-report.html" /f /q > nul 2>&1
 if not "%errorlevel%"=="0" goto "DidNotDeleteBattery"
 if "%BatteryReport%"=="True" goto "BatteryReportDone"
-goto "Close"
+goto "Done"
 
 :"BatteryReportExist"
 set BatteryReport=True
@@ -94,10 +94,11 @@ echo There has been an error! There may not be a battery on this PC Press any ke
 pause > nul 2>&1
 goto "BatteryReport"
 
-:"DidNotDeleteBattery"
-echo.
-echo Error deleting battery report file ("battery-report.html")! Battery report file ("battery-report.html") is located in the folder you ran this batch file from. It may have already been deleted. Press any key to close this batch file.
-goto "Done"
+:"ErrorBatteryReport"
+del "battery-report.html" /f /q > nul 2>&1
+echo Error opening battery report file. Press any key to try again.
+pause > nul 2>&1
+goto "BatterReport"
 
 :"BatteryReportDone"
 echo.
@@ -132,13 +133,13 @@ echo Starting energy test at %DATE% %TIME%. You will have to wait %Duration% sec
 "%windir%\System32\powercfg.exe" /energy /duration %Duration% > nul 2>&1
 if not "%errorlevel%"=="0" goto "EnergyError"
 "energy-report.html" > nul 2>&1
+if not "%errorlevel%"=="0" goto "ErrorEnergyReport"
 echo.
 echo Press any key to delete your energy report and close this batch file.
 pause > nul 2>&1
 del "energy-report.html" /f /q > nul 2>&1
-if not "%errorlevel%"=="0" goto "DidNotDeleteEnergy"
 if "%EnergyReport%"=="True" goto "EnergyReportDone"
-goto "Close"
+goto "Done"
 
 :"EnergyReportExist"
 set EnergyReport=True
@@ -150,12 +151,13 @@ goto "EnergyReport"
 :"EnergyError"
 echo There has been an error! Press any key to try again.
 pause > nul 2>&1
-goto "DurationEnergy"
+goto "EnergyReport"
 
-:"DidNotDeleteEnergy"
-echo.
-echo Error deleting energy report file ("energy-report.html")! Energy report file ("energy-report.html") is located in the folder you ran this batch file from. It may have already been deleted. Press any key to close this batch file.
-goto "Done"
+:"ErrorEnergyReport"
+del "energy-report.html" /f /q > nul 2>&1
+echo Error opening energy report file. Press any key to try again.
+pause > nul 2>&1
+goto "EnergyReport"
 
 :"EnergyReportDone"
 echo.
