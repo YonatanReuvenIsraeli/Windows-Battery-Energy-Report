@@ -2,7 +2,7 @@
 title Windows Battery/Energy Report
 setlocal
 echo Program Name: Windows Battery/Energy Report
-echo Version: 2.2.0
+echo Version: 2.2.1
 echo License: GNU General Public License v3.0
 echo Developer: @YonatanReuvenIsraeli
 echo GitHub: https://github.com/YonatanReuvenIsraeli
@@ -98,7 +98,7 @@ goto "BatteryReport"
 del "battery-report.html" /f /q > nul 2>&1
 echo Error opening battery report file. Press any key to try again.
 pause > nul 2>&1
-goto "BatterReport"
+goto "BatteryReport"
 
 :"BatteryReportDone"
 echo.
